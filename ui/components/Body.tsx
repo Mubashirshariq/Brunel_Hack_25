@@ -97,7 +97,7 @@ export const Body = () => {
         setStakeType(buttons.find(btn => btn.id === id)?.durVal || 7);
     }, [buttons]);
 
-    // Transaction handlers with better error handling
+    // Transaction handlers
     const handleTransaction = useCallback(async (
         action: () => Promise<string>,
         loadingMessage: string,
@@ -114,15 +114,6 @@ export const Body = () => {
 
         try {
             const txSignature = await action();
-            
-            // Wait for transaction confirmation
-            const latestBlockHash = await connection.getLatestBlockhash();
-            await connection.confirmTransaction({
-                blockhash: latestBlockHash.blockhash,
-                lastValidBlockHeight: latestBlockHash.lastValidBlockHeight,
-                signature: txSignature,
-            });
-
             const explorerUrl = `https://explorer.solana.com/tx/${txSignature}?cluster=devnet`;
             
             toast.success(successMessage, {
@@ -137,37 +128,21 @@ export const Body = () => {
             });
 
             await refreshBalances();
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error(`Error: ${errorMessage}`, err);
-            
-            // Handle specific transaction errors
-            let errorMsg = errorMessage;
-            if (err?.message?.includes('already been processed')) {
-                errorMsg = "Transaction already processed. Please check your wallet.";
-            } else if (err?.message?.includes('insufficient funds')) {
-                errorMsg = "Insufficient funds for this transaction.";
-            } else if (err?.message?.includes('custom program error')) {
-                errorMsg = "Smart contract error. Please try again.";
-            } else if (err?.logs) {
-                // Get detailed logs if available
-                const logs = err.logs.join('\n');
-                console.error('Transaction logs:', logs);
-                errorMsg = `${errorMessage}: ${err.message}`;
-            }
-            
-            toast.error(errorMsg, {
-                description: err?.message || String(err),
+            toast.error(errorMessage, {
+                description: err instanceof Error ? err.message : String(err),
                 style: {
                     border: "1px solid rgba(239, 68, 68, 0.3)",
                     background: "linear-gradient(to right, rgba(40, 27, 27, 0.95), rgba(28, 23, 23, 0.95))",
                 },
-                duration: 8000,
+                duration: 5000,
                 id: toastId
             });
         } finally {
             setLoading(false);
         }
-    }, [publicKey, refreshBalances, connection]);
+    }, [publicKey, refreshBalances]);
 
     const stake = useCallback(async () => {
         if (!publicKey) {

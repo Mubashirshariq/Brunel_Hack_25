@@ -34,11 +34,9 @@ export function useProgram(): UseProgramReturn {
   // Program initialization - conditionally create with provider if wallet connected
   let program;
   if (wallet) {
-  // Create a provider with the wallet for transaction signing
+    // Create a provider with the wallet for transaction signing
     const provider = new anchor.AnchorProvider(connection, wallet, {
       preflightCommitment: "confirmed",
-      commitment: "confirmed",
-      skipPreflight: false,
     });
     program = new anchor.Program<Staking>(Idl, provider);
   } else {
@@ -70,7 +68,7 @@ export function useProgram(): UseProgramReturn {
     };
 
     airdropDevnetSol();
-  }, [publicKey]);
+  }, [publicKey, connection]);
 
   return {
     program,
