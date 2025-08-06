@@ -1,0 +1,270 @@
+.header {
+    width: 100%;
+    height: 82px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 7px 29px 0 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.header-open-btn {
+    display: none;
+    width: 40px;
+    height: 40px;
+    padding: 4px;
+    margin-left: auto;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #323232;
+    border: none;
+    border-radius: 5px;
+}
+
+.header-menu {
+    width: 70%;
+    height: 100vh;
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+    background-color: #3f3f3f;
+    padding: 20px;
+    position:fixed;
+    right: 0;
+    top: 0;
+    transition: all .3s;
+    transform: translateX(100%);
+    z-index: 1000;
+}
+
+.header-menu.open {
+    transform: translateX(0%);
+}
+
+.header-menu-list-item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+    align-items: center;
+    padding: 5px;
+    transition: all .1s;
+}
+
+@media (max-width: 200) {
+    
+}
+
+.header-menu-list-item.active {
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #333333;
+}
+
+.header-open-btn-line {
+    width: 100%;
+    height: 3px;
+    background: #FFFFFF;
+    border-radius: 3px;
+}
+
+.header-open-btn-line:nth-child(2) {
+    margin: 10px 0;
+}
+
+.header__tabs {
+    margin-left: 24px;
+    display: flex;
+    height: 100%;
+    position: relative;
+}
+
+.header__tabs-item {
+    width: 220px;
+    height: 100%;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.header__tabs-item::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 6px;
+    background: #FFFFFF;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    opacity: 0;
+    transition: .2s;
+}
+
+.header__tabs-item.active::before {
+    opacity: 1;
+}
+
+.header__tabs-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+}
+
+.header__tabs-item svg {
+    margin-right: 15px;
+}
+
+.header-menu-list {
+    width: 100%;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.header__connect-button {
+    width: 250px;
+    height: 50px !important;
+    padding: 13px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #0a0a0a 100%) !important;
+    border: 2px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 15px !important;
+    font-size: 20px !important;
+    line-height: 24px !important;
+    color: #FFFFFF !important;
+    cursor: pointer !important;
+    margin-left: auto !important;
+    font-weight: 600 !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+}
+
+.header__connect-button:hover {
+    transform: translateY(-0.5px) scale(1.01) !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    background: linear-gradient(135deg, #3a3a3a 0%, #2a2a2a 50%, #1a1a1a 100%) !important;
+    filter: brightness(1.05) !important;
+}
+.wallet-adapter-dropdown{
+    margin-left: auto !important;
+}
+
+/* Wallet Adapter Button Overrides */
+.wallet-adapter-button-trigger,
+.wallet-adapter-button {
+    width: 250px !important;
+    height: 50px !important;
+    padding: 13px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #0a0a0a 100%) !important;
+    border: 2px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 15px !important;
+    font-size: 20px !important;
+    line-height: 24px !important;
+    color: #FFFFFF !important;
+    cursor: pointer !important;
+    font-weight: 600 !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+}
+
+.wallet-adapter-button-trigger:hover,
+.wallet-adapter-button:hover {
+    transform: translateY(-0.5px) scale(1.01) !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    background: linear-gradient(135deg, #3a3a3a 0%, #2a2a2a 50%, #1a1a1a 100%) !important;
+    filter: brightness(1.05) !important;
+}
+
+.wallet-adapter-button-trigger:focus,
+.wallet-adapter-button:focus {
+    outline: none !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.8) !important;
+}
+
+.header-menu__connect-button {
+    width: 100%;
+    height: 40px;
+    padding: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
+    border-radius: 15px;
+    font-size: 20px;
+    line-height: 24px;
+    border: none;
+    color: #FFFFFF;
+    margin-left: auto;
+}
+
+.header__logo {
+    width: 40px;
+    height: 40px;
+}
+
+.header__logo-text {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #0a0a0a 100%);
+    border-radius: 12px;
+    font-size: 20px;
+    font-weight: 900;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(255, 255, 255, 0.05);
+    transition: all 0.2s ease;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.header__logo-text:hover {
+    transform: scale(1.02);
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.6),
+        0 0 25px rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 1224px) {
+    .header__logo-text {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+    .header-open-btn {
+        display: flex;
+    }
+    .header-menu {
+        display: flex;
+    }
+    .header__tabs {
+        display: none;
+    }
+    .header__connect-button {
+        display: none !important;
+    }
+}
+
